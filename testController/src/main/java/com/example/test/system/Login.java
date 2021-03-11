@@ -17,6 +17,7 @@ public class Login {
     public String userLogin(@RequestParam(required = false,value = "userName") String userName,
                                  @RequestParam(required = false,value = "pwd") String pwd) {
         System.out.println("哈哈哈哈");
+        System.out.println("呵呵呵呵");
         return "登录成功";
     }
 }
