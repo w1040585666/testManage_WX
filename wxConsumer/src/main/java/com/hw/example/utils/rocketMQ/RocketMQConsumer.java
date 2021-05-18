@@ -1,6 +1,7 @@
 package com.hw.example.utils.rocketMQ;
 
 import com.hw.example.pojo.MQCommandRecord;
+import com.hw.example.service.impl.ParseMQCommand;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
@@ -8,6 +9,7 @@ import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
 import org.apache.rocketmq.common.message.MessageExt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -45,6 +47,9 @@ public class RocketMQConsumer {
 
     private DefaultMQPushConsumer consumer;
 
+    @Autowired
+    private ParseMQCommand parseMQCommand;
+
     /**
      * @PostContruct是spring框架的注解，在方法上加该注解会在项目启动的时候执行该方法，也可以理解为在spring容器初始化的时候执行该方法。
      */
@@ -68,8 +73,9 @@ public class RocketMQConsumer {
                         mqCommandRecord.setTag(messageExt.getTags());
                         mqCommandRecord.setKey(messageExt.getKeys());
                         mqCommandRecord.setFlag(messageExt.getFlag());
-                        mqCommandRecord.setContext(new String(messageExt.getBody()));
-                        logger.info("MQ consume time = {} , {}",System.currentTimeMillis(), mqCommandRecord.getContext());
+                        mqCommandRecord.setContext(paramContext);
+                        parseMQCommand.addMQCommandRecord(mqCommandRecord);
+                        logger.info("MQ consume receive time = {} ,消息体 {}",System.currentTimeMillis(), mqCommandRecord.getContext());
                     }
                 } catch (Exception e) {
                     logger.error("",e);
@@ -79,7 +85,6 @@ public class RocketMQConsumer {
             });
             consumer.start();
             logger.info(" defaultMQPushConsumer start ");
-            logger.info("deviceCommandToPool  start ");
         } catch (Exception e) {
             e.printStackTrace();
         }
