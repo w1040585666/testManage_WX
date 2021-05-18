@@ -5,13 +5,13 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.hw.example.utils.RedisClient;
+import com.hw.example.utils.redis.RedisClient;
 import com.hw.example.pojo.*;
 import com.hw.example.service.HisUserRecordService;
 import com.hw.example.service.RecordPersonService;
 import com.hw.example.service.SystemUserService;
-import com.hw.example.utils.DateUtils;
-import com.hw.example.utils.MyHttpsClient;
+import com.hw.example.utils.util.DateUtils;
+import com.hw.example.utils.http.MyHttpsClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 
 /**
  * @author:XN

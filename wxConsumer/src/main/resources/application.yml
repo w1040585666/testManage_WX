@@ -5,7 +5,7 @@ Token: 31a148c8-2abf-4e07-94a5-f804f67c9bcb
 server:
   port: 18081
 mybatis:
-  typeAliasesPackage: com.hw.verifyid.pojo
+  typeAliasesPackage: com.hw.example.pojo
   mapperLocations: classpath:mapper/*Mapper.xml
 spring:
   datasource:
@@ -29,10 +29,10 @@ spring:
   application:
     name: verifyID  #服务名称
   redis:
-    host: localhost
-    password: root
+    host: 127.0.0.1
+    password: 123456
     port: 6379
-    database: 8
+    database: 2
     pool:
       max-active: 8
       min-idle: 0
@@ -54,3 +54,10 @@ eureka:
 feign:
   hystrix:
     enabled: true   # 默认关闭hystrix  开启
+
+apache:
+  rocketmq:
+    namesrvAddr: 192.168.135.73:9876
+    consume:
+      consumeGroup: wxConsume
+      topic: wxTest

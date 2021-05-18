@@ -1,4 +1,4 @@
-package com.hw.example.utils;
+package com.hw.example.utils.redis;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

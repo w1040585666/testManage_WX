@@ -1,4 +1,4 @@
-package com.hw.example.utils;
+package com.hw.example.utils.http;
 
 import com.alibaba.druid.support.json.JSONUtils;
 import org.apache.http.HttpEntity;

@@ -1,4 +1,4 @@
-package com.hw.example.utils;
+package com.hw.example.utils.redis;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;

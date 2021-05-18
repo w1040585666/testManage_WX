@@ -9,9 +9,9 @@ import com.hw.example.pojo.*;
 import com.hw.example.service.HisUserRecordService;
 import com.hw.example.service.RecordPersonService;
 import com.hw.example.service.SystemUserService;
-import com.hw.example.utils.DateUtils;
-import com.hw.example.utils.MyHttpsClient;
-import com.hw.example.utils.RedisClient;
+import com.hw.example.utils.util.DateUtils;
+import com.hw.example.utils.http.MyHttpsClient;
+import com.hw.example.utils.redis.RedisClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -48,14 +48,21 @@ public class VerifyIdController {
 
     @GetMapping("/getUser")
     public User getUser() {
-        Object obj = redisClient.get("1");
-        User user = new ObjectMapper().convertValue(obj, User.class);
-        if(user == null){
+        if(redisClient.existsObject("1")){
+            Object obj = redisClient.getObject("1", User.class);
+            User user = new ObjectMapper().convertValue(obj, User.class);
+            if(user == null){
+                User userNew = new User();
+                userNew.setName("1111");
+                redisClient.setObject("1", userNew, 0);
+            }
+            return user;
+        } else {
             User userNew = new User();
             userNew.setName("1111");
             redisClient.setObject("1", userNew, 0);
         }
-        return user;
+        return null;
     }
 
     /**
