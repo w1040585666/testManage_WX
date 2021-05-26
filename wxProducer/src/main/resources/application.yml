@@ -60,5 +60,5 @@ apache:
     namesrvAddr: 192.168.135.73:9876
     producer:
       producerGroup: wxProducer
-      topic: wxTest
+      topic: logTopic
 

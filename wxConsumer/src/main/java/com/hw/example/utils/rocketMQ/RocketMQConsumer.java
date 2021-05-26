@@ -30,7 +30,7 @@ public class RocketMQConsumer {
     /**
      * 消费者的组名
      */
-    @Value("${apache.rocketmq.consume.consumeGroup}")
+    @Value("${apache.rocketmq.consumer.consumeGroup}")
     private String consumerGroup;
 
     /**
@@ -42,7 +42,7 @@ public class RocketMQConsumer {
     /**
      * topic标识
      */
-    @Value("${apache.rocketmq.consume.topic}")
+    @Value("${apache.rocketmq.consumer.topic}")
     private String topic;
 
     private DefaultMQPushConsumer consumer;
@@ -93,6 +93,6 @@ public class RocketMQConsumer {
     @PreDestroy
     public void closeDefaultMQPushConsumer(){
         consumer.shutdown();
-        logger.info("defaultMQPushConsumer shutdown");
+        logger.info(" defaultMQPushConsumer shutdown");
     }
 }

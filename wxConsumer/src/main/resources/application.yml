@@ -58,6 +58,6 @@ feign:
 apache:
   rocketmq:
     namesrvAddr: 192.168.135.73:9876
-    consume:
+    consumer:
       consumeGroup: wxConsume
-      topic: wxTest
+      topic: logTopic

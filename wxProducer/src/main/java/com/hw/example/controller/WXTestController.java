@@ -36,7 +36,6 @@ public class WXTestController {
         Map<String, Object> returnMap = new HashMap<>();
         //声明发送的MQ消息
         rocketSendEntranceToMessage.sendMqDisposeParam("123456789", "5", 1, JSON.toJSONString("我只是测试发送的MQ消息，嘿嘿"));
-
         return returnMap;
     }
 }

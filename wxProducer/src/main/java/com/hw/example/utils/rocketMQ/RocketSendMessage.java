@@ -37,7 +37,7 @@ public class RocketSendMessage {
      */
     public boolean sendMessage(String Tag, String key, int flag, String context){
         boolean res = false;
-        Message message = null;
+        Message message;
         try {
             message = new Message(topic, Tag, key, flag, context.getBytes("UTF-8"), true);
             SendResult result = rocketMQProvider.producer.send(message);
@@ -51,5 +51,4 @@ public class RocketSendMessage {
         }
         return res;
     }
-
 }
