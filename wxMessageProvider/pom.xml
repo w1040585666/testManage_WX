@@ -8,8 +8,9 @@
 		<version>1.0</version>
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>wxProducer</artifactId>
-	<name>wxProducer</name>
+	<artifactId>wxMessageProvider</artifactId>
+
+	<name>wxMessageProvider</name>
 	<description>Demo project for Spring Boot</description>
 	<packaging>jar</packaging>
 
@@ -17,14 +18,6 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-openfeign</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 		</dependency>
 	</dependencies>
 </project>
