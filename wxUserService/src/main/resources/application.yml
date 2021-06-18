@@ -1,0 +1,73 @@
+URL: https://122.115.57.145:8092/FIDRServer
+AppID: 110100001
+Token: 31a148c8-2abf-4e07-94a5-f804f67c9bcb
+
+server:
+  port: 18083
+mybatis:
+  typeAliasesPackage: com.hw.example.pojo
+  mapperLocations: classpath:mapper/*Mapper.xml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/gongan?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 1
+    minIdle: 3
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+  application:
+    name: wx-userService  #服务名称
+  redis:
+    host: localhost
+    password: root
+    port: 6379
+    database: 8
+    pool:
+      max-active: 8
+      min-idle: 0
+      max-idle: 8
+      max-wait: -1
+    timeout: 0
+#  cloud:        # gateWay 以后用
+#    gateway:
+#      discovery:
+#        locator:
+#          enabled: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://39.96.27.192:18082/eureka/
+
+feign:
+  hystrix:
+    enabled: true   # 默认关闭hystrix  开启
+
+apache:
+  rocketmq:
+    namesrvAddr: 192.168.135.73:9876
+    producer:
+      producerGroup: wxProducer
+      topic: logTopic
+
+hystrix:
+    command:
+        default:
+            circuitBreaker:
+                sleepWindowInMilliseconds: 100000
+                forceClosed: true
+            execution:
+                isolation:
+                    thread:
+                        timeoutInMilliseconds: 60000
+    shareSecurityContext: true

@@ -23,10 +23,10 @@
 	</properties>
 
 	<modules>
-		<module>wxProducer</module>
+		<module>wxUserService</module>
 		<module>wxConsumer</module>
 		<module>wxEurekaServer</module>
-		<module>wxMessageProvider</module>
+		<module>wxIntegralService</module>
 	</modules>
 
 	<dependencies>

@@ -1,0 +1,35 @@
+server:
+  port: 18080
+mybatis:
+  type-Aliases-Package: com.hw.example.pojo
+  mapper-Locations: classpath:mapper/*Mapper.xml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/z_integral_service?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 1
+    minIdle: 3
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 30000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+  application:
+      name: wx-integralService
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://39.96.27.192:18082/eureka/
+
+feign:
+  hystrix:
+    enabled: true   # 默认关闭hystrix  开启
