@@ -1,12 +1,10 @@
 package com.hw.example.controller;
 
-import com.hw.example.service.CallIntegralService;
+import com.alibaba.nacos.api.config.annotation.NacosValue;
+import com.hw.example.utils.util.ConfigurationFile;
 import com.hw.example.utils.util.RequestJson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 /**
  * @author wang xin.
@@ -19,11 +17,22 @@ import java.util.Map;
 @RequestMapping("/callIntegral")
 public class CallIntegralController {
 
+    /*@Autowired
+    private CallIntegralService callIntegralService;*/
+
     @Autowired
-    private CallIntegralService callIntegralService;
+    private ConfigurationFile configurationFile;
+
+    private Integer visitUrl;
 
     @GetMapping("/getUserIntegralByCardId")
     public RequestJson getUserIntegralByCardId(@RequestParam String cardId) {
-        return callIntegralService.getUserIntegralByCardId(cardId);
+        System.out.println("配置1：" + configurationFile.faceDetectionSwitch);
+        System.out.println("配置2：" + configurationFile.faceDetectionUrl);
+        System.out.println("配置3：" + configurationFile.faceDetectionState);
+
+        return null;
+        //return callIntegralService.getUserIntegralByCardId(cardId);
     }
+
 }

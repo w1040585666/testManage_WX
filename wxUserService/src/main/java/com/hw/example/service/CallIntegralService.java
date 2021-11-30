@@ -15,6 +15,6 @@ import java.util.Map;
 @FeignClient(value = "wx-integralService",fallback = CallIntegralServiceHystric.class)
 public interface CallIntegralService {
 
-    @RequestMapping(value = "/integralService/getUserIntegralByCardId",method = RequestMethod.GET)
+    //@RequestMapping(value = "/integralService/getUserIntegralByCardId",method = RequestMethod.GET)
     RequestJson getUserIntegralByCardId(@RequestParam(value = "cardId") String cardId);
 }

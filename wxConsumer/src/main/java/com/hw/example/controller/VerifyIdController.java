@@ -52,6 +52,7 @@ public class VerifyIdController {
             Object obj = redisClient.getObject("1", User.class);
             User user = new ObjectMapper().convertValue(obj, User.class);
             if(user == null){
+
                 User userNew = new User();
                 userNew.setName("1111");
                 redisClient.setObject("1", userNew, 0);

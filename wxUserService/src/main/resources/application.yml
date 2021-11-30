@@ -1,7 +1,3 @@
-URL: https://122.115.57.145:8092/FIDRServer
-AppID: 110100001
-Token: 31a148c8-2abf-4e07-94a5-f804f67c9bcb
-
 server:
   port: 18083
 mybatis:
@@ -39,15 +35,27 @@ spring:
       max-idle: 8
       max-wait: -1
     timeout: 0
+
 #  cloud:        # gateWay 以后用
 #    gateway:
 #      discovery:
 #        locator:
 #          enabled: true
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://39.96.27.192:18082/eureka/
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://39.96.27.192:18082/eureka/
+
+nacos:
+    config:
+      server-addr: 39.96.27.192:8848
+      username: nacos
+      password: nacos
+      auto-refresh: true
+      config-retry-time: 3000
+      namespace: wxin
+      type: yaml
+      data-id: config-properties
 
 feign:
   hystrix:
