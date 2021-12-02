@@ -1,5 +1,5 @@
 server:
-  port: 18080
+  port: 18082
 mybatis:
   type-Aliases-Package: com.hw.example.pojo
   mapper-Locations: classpath:mapper/*Mapper.xml
@@ -8,7 +8,7 @@ spring:
     url: jdbc:mysql://localhost:3306/z_integral_service?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
     password: root
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     initialSize: 1
     minIdle: 3
@@ -23,13 +23,21 @@ spring:
     poolPreparedStatements: true
     maxPoolPreparedStatementPerConnectionSize: 20
   application:
-      name: wx-integralService
+      name: wxin-IntegralService
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://39.96.27.192:18082/eureka/
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://39.96.27.192:18082/eureka/
 
 feign:
   hystrix:
     enabled: true   # 默认关闭hystrix  开启
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+
+ribbon:
+  ReadTimeout: 60000
+  ConnectTimeout: 60000

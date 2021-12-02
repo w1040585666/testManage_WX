@@ -52,6 +52,11 @@ public class IntegralServiceController {
     @GetMapping("/getUserIntegralByCardId")
     public RequestJson getUserIntegralByCardId(@RequestParam String cardId) {
         RequestJson result = new RequestJson();
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         SysUserIntegral info = null;
         try {
             info = sysUserService.getUserIntegralByCardId(cardId);

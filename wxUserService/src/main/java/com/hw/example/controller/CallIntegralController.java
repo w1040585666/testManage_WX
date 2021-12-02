@@ -1,7 +1,6 @@
 package com.hw.example.controller;
 
-import com.alibaba.nacos.api.config.annotation.NacosValue;
-import com.hw.example.utils.util.ConfigurationFile;
+import com.hw.example.service.CallIntegralService;
 import com.hw.example.utils.util.RequestJson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -17,22 +16,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/callIntegral")
 public class CallIntegralController {
 
-    /*@Autowired
-    private CallIntegralService callIntegralService;*/
-
     @Autowired
-    private ConfigurationFile configurationFile;
-
-    private Integer visitUrl;
+    private CallIntegralService callIntegralService;
 
     @GetMapping("/getUserIntegralByCardId")
     public RequestJson getUserIntegralByCardId(@RequestParam String cardId) {
-        System.out.println("配置1：" + configurationFile.faceDetectionSwitch);
-        System.out.println("配置2：" + configurationFile.faceDetectionUrl);
-        System.out.println("配置3：" + configurationFile.faceDetectionState);
 
-        return null;
-        //return callIntegralService.getUserIntegralByCardId(cardId);
+        return callIntegralService.getUserIntegralByCardId(cardId);
     }
-
 }

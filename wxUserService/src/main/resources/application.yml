@@ -8,7 +8,7 @@ spring:
     url: jdbc:mysql://localhost:3306/gongan?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: root
     password: root
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     initialSize: 1
     minIdle: 3
@@ -23,7 +23,7 @@ spring:
     poolPreparedStatements: true
     maxPoolPreparedStatementPerConnectionSize: 20
   application:
-    name: wx-userService  #服务名称
+    name: wxin-UserService  #服务名称
   redis:
     host: localhost
     password: root
@@ -36,6 +36,18 @@ spring:
       max-wait: -1
     timeout: 0
 
+  server:
+    compression:
+      request:
+        # 开启请求压缩
+        enabled: true
+        # 配置压缩支持的 MIME TYPE
+        mime-types: text/xml,application/xml,application/json
+        # 配置压缩数据大小的下限
+        min-request-size: 2048
+      response:
+        # 开启响应压缩
+        enabled: true
 #  cloud:        # gateWay 以后用
 #    gateway:
 #      discovery:
@@ -46,20 +58,27 @@ spring:
 #    serviceUrl:
 #      defaultZone: http://39.96.27.192:18082/eureka/
 
-nacos:
-    config:
-      server-addr: 39.96.27.192:8848
-      username: nacos
-      password: nacos
-      auto-refresh: true
-      config-retry-time: 3000
-      namespace: wxin
-      type: yaml
-      data-id: config-properties
-
 feign:
   hystrix:
     enabled: true   # 默认关闭hystrix  开启
+    command:
+      default:
+        circuitBreaker:
+          sleepWindowInMilliseconds: 100
+          forceClosed: true
+        execution:
+          isolation:
+            thread:
+              timeoutInMilliseconds: 5000
+    shareSecurityContext: true
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
+
+ribbon:
+  ReadTimeout: 5
+  ConnectTimeout: 5
 
 apache:
   rocketmq:
@@ -67,15 +86,3 @@ apache:
     producer:
       producerGroup: wxProducer
       topic: logTopic
-
-hystrix:
-    command:
-        default:
-            circuitBreaker:
-                sleepWindowInMilliseconds: 100000
-                forceClosed: true
-            execution:
-                isolation:
-                    thread:
-                        timeoutInMilliseconds: 60000
-    shareSecurityContext: true

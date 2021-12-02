@@ -1,0 +1,14 @@
+server:
+  port: 18080
+spring:
+  application:
+      name: wxin-GatewayService
+  cloud:
+    nacos:
+      discovery:
+        namespace: wxin
+        server-addr: 39.96.27.192:8848
+        username: nacos
+        password: nacos
+        cluster-name: ${spring.application.name}
+

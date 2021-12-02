@@ -1,7 +1,10 @@
 package com.hw.example.utils.util;
 
 import com.alibaba.nacos.api.config.annotation.NacosValue;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * nacos配置中心类
@@ -11,15 +14,14 @@ import org.springframework.stereotype.Component;
  * @Copyright：2021 汉王智远科技有限公司 All rights reserved.
  */
 
-@Component
 public class ConfigurationFile {
 
-    @NacosValue(value = "${faceDetectionSwitch: true}", autoRefreshed = true)
+    @Value(value = "${faceDetectionSwitch: true}")
     public boolean faceDetectionSwitch;
 
-    @NacosValue(value = "${faceDetectionUrl: 未配置URL}", autoRefreshed = true)
+    @Value(value = "${faceDetectionUrl: 未配置URL}")
     public String faceDetectionUrl;
 
-    @NacosValue(value = "${faceDetectionState: 1}", autoRefreshed = true)
+    @Value(value = "${faceDetectionState: 1}")
     public  Integer faceDetectionState;
 }

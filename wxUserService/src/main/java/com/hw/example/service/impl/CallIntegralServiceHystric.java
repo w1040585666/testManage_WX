@@ -2,21 +2,23 @@ package com.hw.example.service.impl;
 
 import com.hw.example.service.CallIntegralService;
 import com.hw.example.utils.util.RequestJson;
+import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by wangxin on 2021/6/16.
  */
 @Component
-public class CallIntegralServiceHystric implements CallIntegralService {
-
+public class CallIntegralServiceHystric implements FallbackFactory<CallIntegralService>{
     @Override
-    public RequestJson getUserIntegralByCardId(@RequestParam(value = "name") String cardId) {
-        RequestJson result = new RequestJson();
-        return RequestJson.failuerResult(result, "哎，服务出现异常了！");
+    public CallIntegralService create(Throwable throwable){
+        return new CallIntegralService(){
+            @Override
+            public RequestJson getUserIntegralByCardId(@RequestParam(value = "cardId") String cardId) {
+                RequestJson result = new RequestJson();
+                return RequestJson.failuerResult(result, "哎呦喂，服务器出现异常了！");
+            }
+        };
     }
 }

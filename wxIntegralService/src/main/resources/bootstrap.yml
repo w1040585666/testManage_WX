@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: wxin-IntegralService  #服务名称
+  cloud:
+    nacos:
+      config:
+        server-addr: 39.96.27.192:8848
+        username: nacos
+        password: nacos
+        auto-refresh: true
+        config-retry-time: 3000
+        namespace: wxin
+        cluster-name: ${spring.application.name}
+        extension-configs[0]:
+          data-id: wxin-faceDetection.properties
+          group: DEFAULT_GROUP
+          refresh: true
+        extension-configs[1]:
+          data-id: wxin-faceDetection.yml
+          group: DEFAULT_GROUP
+          refresh: true
+      discovery:
+        namespace: wxin
+        server-addr: 39.96.27.192:8848
+        cluster-name: ${spring.application.name}

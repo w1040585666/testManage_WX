@@ -16,12 +16,12 @@ import javax.servlet.ServletContext;
 public class SettingDataInitListener implements ApplicationListener<ContextRefreshedEvent> {
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        WebApplicationContext webApplicationContext =
+       /* WebApplicationContext webApplicationContext =
                 (WebApplicationContext)contextRefreshedEvent.getApplicationContext();
         ServletContext context = webApplicationContext.getServletContext();
 
         // 初始化系统参数
         String path = context.getRealPath("/");
-        Utils.webPath = path;
+        Utils.webPath = path;*/
     }
 }
