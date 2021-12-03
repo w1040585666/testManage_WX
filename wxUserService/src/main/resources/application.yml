@@ -35,7 +35,6 @@ spring:
       max-idle: 8
       max-wait: -1
     timeout: 0
-
   server:
     compression:
       request:
@@ -48,6 +47,7 @@ spring:
       response:
         # 开启响应压缩
         enabled: true
+
 #  cloud:        # gateWay 以后用
 #    gateway:
 #      discovery:

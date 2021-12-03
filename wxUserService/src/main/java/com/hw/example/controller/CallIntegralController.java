@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @ResponseBody
-@RequestMapping("/callIntegral")
+@RequestMapping("/userCallIntegral")
 public class CallIntegralController {
 
     @Autowired
@@ -21,7 +21,6 @@ public class CallIntegralController {
 
     @GetMapping("/getUserIntegralByCardId")
     public RequestJson getUserIntegralByCardId(@RequestParam String cardId) {
-
         return callIntegralService.getUserIntegralByCardId(cardId);
     }
 }
