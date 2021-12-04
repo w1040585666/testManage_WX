@@ -20,18 +20,18 @@ spring:
         - id: userService_route
           uri: lb://wxin-UserService
           predicates:
-            - Path=/userCallIntegral/**
-          filters:
-            - name: RequestRateLimiter
-              args:
-                redis-rate-limiter:
-                  replenishRate: 3 #令牌补充的频率，每次就一个
-                  burstCapacity: 20 #令牌桶的最大容量,允许在一秒钟内完成的最大请求数
-                key-resolver: "#{@ipKeyResolver}"
+            - Path=/userApi/**
+#          filters:
+#            - name: RequestRateLimiter
+#              args:
+#                redis-rate-limiter:
+#                  replenishRate: 3 #令牌补充的频率，每次就一个
+#                  burstCapacity: 20 #令牌桶的最大容量,允许在一秒钟内完成的最大请求数
+#                key-resolver: "#{@ipKeyResolver}"
         - id: integralService_route
           uri: lb://wxin-IntegralService
           predicates:
-            - Path=/integralService/**
+            - Path=/integralApi/**
     sentinel:
       # 取消控制台懒加载
       eager: true

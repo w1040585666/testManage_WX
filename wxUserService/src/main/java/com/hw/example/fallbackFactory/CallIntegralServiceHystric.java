@@ -1,4 +1,4 @@
-package com.hw.example.service.impl;
+package com.hw.example.fallbackFactory;
 
 import com.hw.example.service.CallIntegralService;
 import com.hw.example.utils.util.RequestJson;
